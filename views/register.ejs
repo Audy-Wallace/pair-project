@@ -20,27 +20,27 @@
             <div class="register"><p>Register</p></div>
             <div class="row">
                 <div class="col">
+                  <form action="/" method="POST">
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">@</span>
-                        <input type="text" class="form-control" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1">
+                        <input type="email" class="form-control" name="email" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1">
                       </div>
                       <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+                        <input type="password" class="form-control" name="password" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
                       </div>
                       <div class="input-group mb-3">
-                        <input type="date" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+                        <input type="date" class="form-control" name="dateOfBirth" aria-describedby="basic-addon1">
                       </div>
                 </div>
                 <div class="col">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="First Name" aria-label="Username" aria-describedby="basic-addon1">
+                        <input type="text" class="form-control" placeholder="First Name" name="firstName"  aria-describedby="basic-addon1">
                       </div>
                       <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Last Name" aria-label="Username" aria-describedby="basic-addon1">
+                        <input type="text" class="form-control" placeholder="Last Name" name="lastName"  aria-describedby="basic-addon1">
                       </div>
                       <div class="input-group mb-3">
-                        <select class="form-select" id="inputGroupSelect02">
-                          <option selected disabled>Choose...</option>
+                        <select name="gender" class="form-select" id="inputGroupSelect02">
                           <option value="Male">Male</option>
                           <option value="Female">Female</option>
                         </select>
@@ -49,6 +49,7 @@
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
             <p>Already have Account? <a href="/login">Login Here</a></p>
         </div>
     </div>
