@@ -4,6 +4,7 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", HomeController.home);
+
     router.use((req, res, next) => {
         console.log(req.session)
         if(!req.session.iduser){
@@ -12,7 +13,12 @@ router.get("/", HomeController.home);
         } else {
             next()
         }
+
 })
+
+      })
+      
+
 router.get("/courses", HomeController.courses);
 router.get("/courses/add", HomeController.addCourse);
 router.post("/courses/add", HomeController.addToDB);

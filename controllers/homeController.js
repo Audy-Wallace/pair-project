@@ -3,11 +3,12 @@ const {User, Course, User_Course} = require("../models")
 const convertToRupiah = require("../helpers/convertToRp");
 class HomeController{
     static home(req, res){
-        const id = req.session.iduser;
+        let id = req.session.iduser
         res.render("home", {id});
     }
 
     static courses(req, res){
+
         const role = req.session.roleuser;
         const userid = req.session.iduser;
         Course.findAll({
@@ -17,6 +18,7 @@ class HomeController{
         })
             .then(data => {
                 res.render("courses", {data, convertToRupiah, role, userid});
+
             })
             .catch(err => {
                 res.render(err);

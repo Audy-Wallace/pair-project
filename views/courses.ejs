@@ -44,6 +44,7 @@
             <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto my-2 my-lg-0">
+
                     <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
                     <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
                     <li class="nav-item"><a class="nav-link active" href="/home/courses">Courses</a></li>
@@ -63,6 +64,7 @@
                                 <h5 class="card-title"><%= el.name %></h5>
                                 <p class="card-text" style="height: 60%;overflow: auto;"><%= el.description %></p>
                                 <div class="buttons mb-1 mt-1">
+
                                     <h6 class="mt-3">Price: <%= convertToRupiah(el.price) %></h6>
                                     <% if(role == 1){ %>
                                         <a href= "/home/courses/edit/<%= el.id %>" class="btn btn-secondary">Edit</a>
@@ -70,7 +72,8 @@
                                         <% } else if(role == 2){ %>
                                         <a href= "/home/courses/buy/<%= el.id %>" class="btn btn-primary"> Buy </a>
                                         <% console.log(el.Users)%>
-                                        <% }%>
+
+                                      <% }%>
                                 </div>
                             </div>
                         </div>
