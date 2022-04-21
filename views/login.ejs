@@ -69,7 +69,9 @@ h1 {
     <div class="style3">
         <!-- <h1 style="position: absolute; top: 0; left: 50px; color:green; font-size: 45px;">Course-Sale</h1> -->
         <div class="style1"> 
-            
+            <% if(errors){ %>
+                <pre><%=errors%></pre>
+            <% } %>
             <h2>Login</h2>
             <div id="style2">
                 <form action="/login" method="post">
