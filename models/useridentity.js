@@ -18,10 +18,19 @@ module.exports = (sequelize, DataTypes) => {
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
     dateOfBirth: DataTypes.DATE,
-    gender: DataTypes.STRING
+    gender: DataTypes.STRING,
+    UserId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'UserIdentity',
+    hooks:{
+      afterCreate(instance, options){
+        let ida = instance.id
+        // let idu = instance.UserId
+        instance.UserId = ida
+        console.log(ida, "ida");
+      }
+    }
   });
   return UserIdentity;
 };
