@@ -16,12 +16,11 @@ app.use(session({
   } 
 }))
 
-app.get('/', Controller.registerForm)
-app.post('/', Controller.postRegister)
-app.get('/login', Controller.loginForm)
-app.post('/login', Controller.cekLogin)
 
+app.use("/", require("./routes/index"))
 app.use("/home", require("./routes/home"))
+app.use("/login", require("./routes/login"))
+app.use("/register", require("./routes/register"))
 
 app.get('/logout', Controller.logOut)
 
