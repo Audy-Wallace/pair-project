@@ -23,14 +23,6 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'UserIdentity',
-    hooks:{
-      afterCreate(instance, options){
-        let ida = instance.id
-        // let idu = instance.UserId
-        instance.UserId = ida
-        console.log(ida, "ida");
-      }
-    }
   });
   return UserIdentity;
 };
