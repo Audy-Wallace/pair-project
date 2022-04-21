@@ -9,6 +9,8 @@ class HomeController{
     }
 
     static courses(req, res){
+        let userid = req.session.iduser
+
 
         let options = {
             where: {}
@@ -28,6 +30,7 @@ class HomeController{
                 description: {
                     [Op.iLike]: `%${req.query.searchDesc}%`
                 }
+
             }
         }
 
@@ -36,13 +39,16 @@ class HomeController{
         Course.findAll(options, {
             include: {
                 model : User
+
             }
-        })
+        }
+        Course.findAll(options)
             .then(data => {
                 res.render("courses", {data, convertToRupiah, role, userid});
 
             })
             .catch(err => {
+                console.log(err, "eeee");
                 res.render(err);
             })
     }
