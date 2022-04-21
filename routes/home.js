@@ -4,6 +4,7 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", HomeController.home);
+
     router.use((req, res, next) => {
         console.log(req.session)
         if(!req.session.iduser){
@@ -13,6 +14,7 @@ router.get("/", HomeController.home);
             next()
         }
       })
+      
 router.get("/courses", HomeController.courses);
 
 module.exports = router;
