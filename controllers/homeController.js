@@ -1,4 +1,5 @@
 "use strict"
+const { Op } = require("sequelize");
 const {User, Course, User_Course} = require("../models")
 const convertToRupiah = require("../helpers/convertToRp");
 class HomeController{
@@ -8,10 +9,30 @@ class HomeController{
     }
 
     static courses(req, res){
+        let options = {
+            where: {}
+        }
+        if (req.query.searchName) {
+            options.where = {
+                ...options.where,
+                name: {
+                    [Op.iLike]: `%${req.query.searchName}%`
+                }
+            }
+
+        }
+        if (req.query.searchDesc) {
+            options.where = {
+                ...options.where,
+                description: {
+                    [Op.iLike]: `%${req.query.searchDesc}%`
+                }
+            }
+        }
         const role = req.session.roleuser;
         const userid = req.session.iduser;
         let output;
-        Course.findAll({
+        Course.findAll(options, {
             include: {
                 model : User
             }
