@@ -5,5 +5,6 @@ const router = express.Router();
 
 router.get("/", HomeController.home);
 router.get("/courses", HomeController.courses);
+router.get("/courses/:id", HomeController.user);
 
 module.exports = router;

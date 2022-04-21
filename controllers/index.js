@@ -3,6 +3,10 @@ const bcrypt = require('bcryptjs')
 
 class Controller {
 
+    static home(req, res){
+        res.redirect('/home');
+    }
+
     static registerForm(req,res){
         res.render('register.ejs')
     }
@@ -47,7 +51,7 @@ class Controller {
             if(user){
                 const isValidPassword = bcrypt.compareSync(password, user.password)
                 if(isValidPassword) {
-                    return res.send('email dan password muasok')
+                    return res.redirect(`home/courses/${user.id}`)
                 } else {
                     return res.send('email dan password gak cocok boz')
                 }
