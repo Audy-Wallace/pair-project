@@ -23,10 +23,8 @@ app.post('/login', Controller.cekLogin)
 
 app.use("/home", require("./routes/home"))
 
-// app.use((req, res, next) => {
-//   console.log('Time:', Date.now())
-//   next()
-// })
+app.get('/logout', Controller.logOut)
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
