@@ -9,8 +9,9 @@ class HomeController{
     }
 
     static courses(req, res){
-        let role = req.session.roleuser
         let userid = req.session.iduser
+
+
         let options = {
             where: {}
         }
@@ -29,6 +30,16 @@ class HomeController{
                 description: {
                     [Op.iLike]: `%${req.query.searchDesc}%`
                 }
+
+            }
+        }
+
+        const role = req.session.roleuser;
+        const userid = req.session.iduser;
+        Course.findAll(options, {
+            include: {
+                model : User
+
             }
         }
         Course.findAll(options)
