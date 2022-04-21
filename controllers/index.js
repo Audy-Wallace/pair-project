@@ -8,7 +8,8 @@ class Controller {
     }
 
     static registerForm(req, res) {
-        res.render('register.ejs')
+        let errors = req.query.errors
+        res.render('register.ejs', {errors})
     }
     static loginForm(req, res) {
         let errors = req.query.errors
@@ -36,9 +37,18 @@ class Controller {
                     })
             })
             .catch(err => {
-                console.log(err);
-                res.send(err)
-            })
+                let result = []
+                if (err.name == "SequelizeValidationError") {
+                err.errors.forEach(x=>{
+                    result.push(x.message)
+                })
+                return res.redirect(`/?errors=${result}`)
+                } else {
+                    res.send(err)
+
+                }
+                
+            })      
     }
 
     static cekLogin(req, res) {
@@ -74,8 +84,14 @@ class Controller {
     }
 
         static logOut(req,res){
+            req.session.destroy(err=>{
+                if(err){
+                    res.send(err)
+                } else {
+                    res.redirect('/login')
+                }
+            })
 
-            
         }
 
 }

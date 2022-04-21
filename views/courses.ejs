@@ -48,11 +48,21 @@
                     <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
                     <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
                     <li class="nav-item"><a class="nav-link active" href="/home/courses">Courses</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
                     <li><a href= "/home/courses/add" class="btn btn-primary">Add</a></li>
                 </ul>
             </div>
         </div>
     </nav>
+
+    <div class="search container mt-2 mb-5 mx-5">
+        <form class="d-flex" action="/home/courses" method="GET">
+            <input class="form-control me-2" type="search" placeholder="Search by name" aria-label="Search" name="searchName">
+            <input class="form-control me-2" type="search" placeholder="Search by desc" aria-label="Search" name="searchDesc">
+            <button class="btn btn-success" type="submit">Search</button>
+          </form>
+    </div>
+
     <main>
         <div class="cards">
             <div class="row g-3">

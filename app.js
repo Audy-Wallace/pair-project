@@ -22,6 +22,9 @@ app.use("/home", require("./routes/home"))
 app.use("/login", require("./routes/login"))
 app.use("/register", require("./routes/register"))
 
+
+app.get('/logout', Controller.logOut)
+
 // app.use((req, res, next) => {
 //   console.log('Time:', Date.now())
 //   next()
