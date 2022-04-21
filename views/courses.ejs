@@ -68,8 +68,13 @@
                                         <a href= "/home/courses/edit/<%= el.id %>" class="btn btn-secondary">Edit</a>
                                         <a href= "/home/courses/delete/<%= el.id %>" class="btn btn-danger">Delete</a>
                                         <% } else if(role == 2){ %>
-                                        <a href= "/home/courses/buy/<%= el.id %>" class="btn btn-primary"> Buy </a>
-                                        <% console.log(el.Users)%>
+                                            <% console.log(purchased.filter(element => element.id == el.id)[0]) %>
+                                            <% if(purchased.filter(element => element.id == el.id)[0]) {%>
+                                                <h6>purchased</h6>
+                                                <%} else {%>
+                                                    <a href= "/home/courses/buy/<%= el.id %>" class="btn btn-primary"> Buy </a>
+                                                    
+                                            <%}%>
                                         <% }%>
                                 </div>
                             </div>
