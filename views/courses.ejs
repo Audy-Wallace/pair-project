@@ -44,22 +44,30 @@
             <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto my-2 my-lg-0">
+
                     <li class="nav-item"><a class="nav-link active" href="/home/courses">Courses</a></li>
                     <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
                     <% if(role == 1) { %>
                         <li><a href= "/home/courses/add" class="btn btn-primary">Add</a></li>
                     <%}%>
+
                 </ul>
             </div>
         </div>
     </nav>
+
     <div class="search container main mb-3">
+
+
+    <div class="search container mt-2 mb-5 mx-5">
+
         <form class="d-flex" action="/home/courses" method="GET">
             <input class="form-control me-2" type="search" placeholder="Search by name" aria-label="Search" name="searchName">
             <input class="form-control me-2" type="search" placeholder="Search by desc" aria-label="Search" name="searchDesc">
             <button class="btn btn-success" type="submit">Search</button>
           </form>
     </div>
+
     <main>
         <div class="cards">
             <div class="row g-3">
@@ -71,12 +79,13 @@
                                 <h5 class="card-title"><%= el.name %></h5>
                                 <p class="card-text" style="height: 60%;overflow: auto;"><%= el.description %></p>
                                 <div class="buttons mb-1 mt-1">
+
                                     <h6 class="mt-3">Price: <%= convertToRupiah(el.price) %></h6>
                                     <% if(role == 1){ %>
                                         <a href= "/home/courses/edit/<%= el.id %>" class="btn btn-secondary">Edit</a>
                                         <a href= "/home/courses/delete/<%= el.id %>" class="btn btn-danger">Delete</a>
                                         <% } else if(role == 2){ %>
-                                            <% console.log(purchased.filter(element => element.id == el.id)[0]) %>
+                         <% console.log(purchased.filter(element => element.id == el.id)[0]) %>
                                             <% if(purchased.filter(element => element.id == el.id)[0]) {%>
                                                 <h6>purchased</h6>
                                                 <%} else {%>
@@ -84,6 +93,7 @@
                                                     
                                             <%}%>
                                         <% }%>
+
                                 </div>
                             </div>
                         </div>

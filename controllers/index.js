@@ -43,7 +43,7 @@ class Controller {
                 err.errors.forEach(x=>{
                     result.push(x.message)
                 })
-                return res.redirect(`/register?errors=${result}`)
+                return res.redirect(`/?errors=${result}`)
                 } else {
                     res.send(err)
 
@@ -84,16 +84,17 @@ class Controller {
             })
     }
 
-    static logOut(req,res){
-        req.session.destroy(err=>{
-            if(err){
-                res.send(err)
-            } else {
-                res.redirect('/login')
-            }
-        })
 
-    }
+        static logOut(req,res){
+            req.session.destroy(err=>{
+                if(err){
+                    res.send(err)
+                } else {
+                    res.redirect('/login')
+                }
+            })
+
+        }
 
 }
 module.exports = Controller

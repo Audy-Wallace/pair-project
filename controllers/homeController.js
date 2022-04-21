@@ -4,11 +4,13 @@ const {User, Course, User_Course} = require("../models")
 const convertToRupiah = require("../helpers/convertToRp");
 class HomeController{
     static home(req, res){
-        const id = req.session.iduser;
+        let id = req.session.iduser
         res.render("home", {id});
     }
 
     static courses(req, res){
+
+
         let options = {
             where: {}
         }
@@ -27,17 +29,22 @@ class HomeController{
                 description: {
                     [Op.iLike]: `%${req.query.searchDesc}%`
                 }
+
             }
         }
         const role = req.session.roleuser;
         const userid = req.session.iduser;
         let output;
+
         Course.findAll(options, {
             include: {
                 model : User
+
             }
-        })
+        }
+        Course.findAll(options)
             .then(data => {
+
                 output = data;
                 return Course.findAll({
                     attributes:  ["id"],
@@ -51,8 +58,10 @@ class HomeController{
             })
             .then((data) => {
                 res.render("courses", {data: output, convertToRupiah, role, userid, purchased: data});
+
             })
             .catch(err => {
+                console.log(err, "eeee");
                 res.render(err);
             })
     }
