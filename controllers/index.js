@@ -69,5 +69,10 @@ class Controller {
             })
     }
 
+        static logOut(req,res){
+
+            
+        }
+
 }
 module.exports = Controller
