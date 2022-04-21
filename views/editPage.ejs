@@ -17,6 +17,9 @@
 <body>
     <div class="container all m-4">
         <div class="form m-5">
+          <% if (errors) { %>
+            <pre><%= errors %></pre>
+          <%}%>
             <div class="register"><p>Edit Course</p></div>
             <div class="row">
                 <div class="col">

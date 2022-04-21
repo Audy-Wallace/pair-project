@@ -53,6 +53,9 @@
             </div>
         </div>
     </nav>
+    <div class="container main">
+        <h1 class="main">Welcome! <%= useridentity[0].fullName%> </h1>
+    </div>
     <div class="search container main mb-3">
         <form class="d-flex" action="/home/courses" method="GET">
             <input class="form-control me-2" type="search" placeholder="Search by name" aria-label="Search" name="searchName">
@@ -76,12 +79,10 @@
                                         <a href= "/home/courses/edit/<%= el.id %>" class="btn btn-secondary">Edit</a>
                                         <a href= "/home/courses/delete/<%= el.id %>" class="btn btn-danger">Delete</a>
                                         <% } else if(role == 2){ %>
-                                            <% console.log(purchased.filter(element => element.id == el.id)[0]) %>
                                             <% if(purchased.filter(element => element.id == el.id)[0]) {%>
                                                 <h6>purchased</h6>
                                                 <%} else {%>
                                                     <a href= "/home/courses/buy/<%= el.id %>" class="btn btn-primary"> Buy </a>
-                                                    
                                             <%}%>
                                         <% }%>
                                 </div>

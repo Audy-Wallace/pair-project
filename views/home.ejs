@@ -11452,7 +11452,10 @@ header.masthead h1, header.masthead .h1 {
                       <% if(!id){ %>
                         <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
                         <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
-                      <%} %>
+                        <%} else { %>
+                          <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+                          
+                          <%}%>
                         <li class="nav-item"><a class="nav-link" href="/home/courses">Courses</a></li>
                     </ul>
                 </div>
@@ -11467,6 +11470,7 @@ header.masthead h1, header.masthead .h1 {
                         <hr class="divider" />
                     </div>
                     <div class="col-lg-8 align-self-baseline">
+                      <p class="text-white-75 mb-5">We sell a lot of variety online courses with an affordable price that can boost your brain. <br> Improve your knowledge with Us!  </p>
                         <p class="text-white-75 mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo facilis natus facere cumque quis eos nesciunt animi esse enim in placeat repellat cupiditate commodi, totam eligendi, adipisci fugit maiores? Quaerat!</p>
                         <% if(!id){ %>
                           <a class="btn btn-primary btn-xl" href="#about">Register</a>
@@ -11479,12 +11483,16 @@ header.masthead h1, header.masthead .h1 {
         <section class="page-section bg-primary" id="about">
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
+
                     <div class="col-lg-8 text-center">
                         <h2 class="text-white mt-0">About Us!</h2>
                         <hr class="divider divider-light" />
+
+                        <p class="text-white-75 mb-4">Hi! We are an online course seller that can boost your brain. Many types of course that we sell. By purchasing an online course at Courze, you are investing for your knowledge!</p>
                         <p class="text-white-75 mb-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum, dolore? Quasi ab, rem enim fugiat id quod eius, eaque maxime magni non incidunt architecto voluptatum, nostrum temporibus doloremque cumque? Voluptatum.</p>
                     </div>
                 </div>
+                <div></div>
             </div>
         </section>
 
