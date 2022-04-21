@@ -18,6 +18,10 @@
     <div class="container all m-4">
         <div class="form m-5">
             <div class="register"><p>Register</p></div>
+            <br>
+           <% if(errors){ %>
+              <pre><%=errors%></pre>
+              <% } %>
             <div class="row">
                 <div class="col">
                   <form action="/register" method="POST">
@@ -48,7 +52,7 @@
                       </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Register</button>
           </form>
             <p>Already have Account? <a href="/login">Login Here</a></p>
         </div>

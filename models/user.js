@@ -12,13 +12,35 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.hasOne(models.UserIdentity, {foreignKey: "UserId"})
-      User.belongsToMany(models.Course, {through: "User_Courses"})
+      User.hasOne(models.UserIdentity, { foreignKey: "UserId" })
+      User.belongsToMany(models.Course, { through: "User_Courses" })
     }
   }
   User.init({
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: 'E-mail is required'
+        },
+        isEmail: {
+          args: true,
+          msg: 'Fill e-mail with true format'
+        }
+      }
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: 'Password is required'
+        }
+      }
+    },
     role: DataTypes.INTEGER
 
   }, {

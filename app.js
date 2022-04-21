@@ -20,6 +20,7 @@ app.use(session({
 app.use("/", require("./routes/index"))
 app.use("/home", require("./routes/home"))
 app.use("/login", require("./routes/login"))
+app.use("/logout", require("./routes/logout"))
 app.use("/register", require("./routes/register"))
 
 // app.use((req, res, next) => {

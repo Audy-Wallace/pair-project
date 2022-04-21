@@ -44,11 +44,11 @@
             <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
                     <li class="nav-item"><a class="nav-link active" href="/home/courses">Courses</a></li>
                     <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
-                    <li><a href= "/home/courses/add" class="btn btn-primary">Add</a></li>
+                    <% if(role == 1) { %>
+                        <li><a href= "/home/courses/add" class="btn btn-primary">Add</a></li>
+                    <%}%>
                 </ul>
             </div>
         </div>
