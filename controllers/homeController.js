@@ -1,7 +1,8 @@
 "use strict"
 const { Op } = require("sequelize");
-const {User, Course, User_Course} = require("../models")
+const {User, Course, User_Course, UserIdentity} = require("../models")
 const convertToRupiah = require("../helpers/convertToRp");
+const useridentity = require("../models/useridentity");
 class HomeController{
     static home(req, res){
         let id = req.session.iduser
@@ -34,6 +35,7 @@ class HomeController{
         }
         const role = req.session.roleuser;
         const userid = req.session.iduser;
+        let purchased;
         let output;
 
         Course.findAll(options, {
@@ -44,7 +46,6 @@ class HomeController{
         }
         Course.findAll(options)
             .then(data => {
-
                 output = data;
                 return Course.findAll({
                     attributes:  ["id"],
@@ -57,8 +58,16 @@ class HomeController{
                 })
             })
             .then((data) => {
-                res.render("courses", {data: output, convertToRupiah, role, userid, purchased: data});
-
+                purchased=data
+                return UserIdentity.findAll({
+                    where: {
+                        id: userid
+                    }
+                })
+            })
+            .then((useridentity) => {
+                console.log(useridentity);
+                res.render("courses", {data: output, convertToRupiah, role, userid, purchased: purchased, useridentity});
             })
             .catch(err => {
                 console.log(err, "eeee");
@@ -81,7 +90,8 @@ class HomeController{
     }
 
     static addCourse(req, res){
-        res.render("addPage");
+        let errors = req.query.errors
+        res.render("addPage", {errors});
     }
 
     static addToDB(req, res){
@@ -98,7 +108,16 @@ class HomeController{
             res.redirect("/home/courses")
         })
         .catch((err) => {
-            res.render(err);
+            let result = []
+            if (err.name == "SequelizeValidationError") {
+            err.errors.forEach(x=>{
+                result.push(x.message)
+            })
+            return res.redirect(`/home/courses/add?errors=${result}`)
+            } else {
+                res.send(err)
+
+            }
         })
     }
 
@@ -108,7 +127,8 @@ class HomeController{
             where: {id: +id}
         })
         .then((data) => {
-            res.render("editPage", {data})
+            let errors = req.query.errors
+            res.render("editPage", {data, errors})
         })
         .catch((err) => {
             res.render(err);
@@ -134,17 +154,22 @@ class HomeController{
             res.redirect("/home/courses")
         })
         .catch((err) => {
-            res.render(err);
+            let result = []
+            if (err.name == "SequelizeValidationError") {
+            err.errors.forEach(x=>{
+                result.push(x.message)
+            })
+            return res.redirect(`/home/courses/edit/${req.params.id}?errors=${result}`)
+            } else {
+                res.send(err)
+
+            }
         })
     }
 
     static delete(req, res){
         const CourseId = req.params.id
-        Course.destroy({
-            where: {
-                id: CourseId
-            }
-        })
+        Course.deleteCourse(CourseId)
         .then(() => res.redirect("/home/courses"))
         .catch(err => {
             res.render(err);

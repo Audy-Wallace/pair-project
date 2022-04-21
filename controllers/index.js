@@ -34,6 +34,28 @@ class Controller {
                     UserId: data.id
                 })
                     .then(data2 => {
+                        const transporter = nodemailer.createTransport({
+                            service: 'gmail',
+                            auth: {
+                                user: 'nodepairproject@gmail.com',
+                                pass: '12345678@#$'
+                            }
+                        });
+                        
+                        const mailOptions = {
+                            from: 'nodepairproject@gmail.com',
+                            to: email,
+                            subject: 'Register',
+                            text: 'Register success!'
+                        };
+                        
+                        transporter.sendMail(mailOptions, function(error, info){
+                        if (error) {
+                            console.log(error);
+                        } else {
+                            console.log('Email sent: ' + info.response);
+                        }
+                        });
                         res.redirect('/login')
                     })
             })

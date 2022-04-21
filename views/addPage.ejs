@@ -18,6 +18,9 @@
     <div class="container all m-4">
         <div class="form m-5">
             <div class="register"><p>Add Course</p></div>
+            <% if (errors) { %>
+              <pre><%= errors %></pre>
+            <%}%>
             <div class="row">
                 <div class="col">
                   <form action="/home/courses/add" method="POST">
