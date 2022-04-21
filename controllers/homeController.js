@@ -9,7 +9,6 @@ class HomeController{
     }
 
     static courses(req, res){
-        let userid = req.session.iduser
 
 
         let options = {
@@ -33,9 +32,10 @@ class HomeController{
 
             }
         }
-
         const role = req.session.roleuser;
         const userid = req.session.iduser;
+        let output;
+
         Course.findAll(options, {
             include: {
                 model : User
@@ -44,7 +44,20 @@ class HomeController{
         }
         Course.findAll(options)
             .then(data => {
-                res.render("courses", {data, convertToRupiah, role, userid});
+
+                output = data;
+                return Course.findAll({
+                    attributes:  ["id"],
+                    include: {
+                        model: User,
+                        where: {
+                            id: userid
+                        }
+                    }
+                })
+            })
+            .then((data) => {
+                res.render("courses", {data: output, convertToRupiah, role, userid, purchased: data});
 
             })
             .catch(err => {

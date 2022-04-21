@@ -46,20 +46,21 @@
                 <ul class="navbar-nav ms-auto my-2 my-lg-0">
 
                     <li class="nav-item"><a class="nav-link active" href="/home/courses">Courses</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                    <% if(role == 1) { %>
+                        <li><a href= "/home/courses/add" class="btn btn-primary">Add</a></li>
+                    <%}%>
 
-                    <% if(role == 1){ %>
-
-  
-
-                    <li><a href= "/home/courses/add" class="btn btn-primary">Add</a></li>
-                    <%  } %>
-                    <li><a href= "/logout"  class="btn btn-danger ms-2">Log out</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
+    <div class="search container main mb-3">
+
+
     <div class="search container mt-2 mb-5 mx-5">
+
         <form class="d-flex" action="/home/courses" method="GET">
             <input class="form-control me-2" type="search" placeholder="Search by name" aria-label="Search" name="searchName">
             <input class="form-control me-2" type="search" placeholder="Search by desc" aria-label="Search" name="searchDesc">
@@ -84,10 +85,15 @@
                                         <a href= "/home/courses/edit/<%= el.id %>" class="btn btn-secondary">Edit</a>
                                         <a href= "/home/courses/delete/<%= el.id %>" class="btn btn-danger">Delete</a>
                                         <% } else if(role == 2){ %>
-                                        <a href= "/home/courses/buy/<%= el.id %>" class="btn btn-primary"> Buy </a>
-                                        <% console.log(el.Users)%>
+                         <% console.log(purchased.filter(element => element.id == el.id)[0]) %>
+                                            <% if(purchased.filter(element => element.id == el.id)[0]) {%>
+                                                <h6>purchased</h6>
+                                                <%} else {%>
+                                                    <a href= "/home/courses/buy/<%= el.id %>" class="btn btn-primary"> Buy </a>
+                                                    
+                                            <%}%>
+                                        <% }%>
 
-                                      <% }%>
                                 </div>
                             </div>
                         </div>

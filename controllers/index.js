@@ -1,5 +1,6 @@
 const { UserIdentity, User } = require('../models')
 const bcrypt = require('bcryptjs')
+const nodemailer = require("nodemailer");
 
 class Controller {
 
@@ -82,6 +83,7 @@ class Controller {
                 res.send(err)
             })
     }
+
 
         static logOut(req,res){
             req.session.destroy(err=>{
