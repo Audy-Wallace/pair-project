@@ -24,7 +24,6 @@ class Controller {
             password: password
         })
             .then(data => {
-                // console.log(data);
                 return UserIdentity.create({
                     firstName: firstName,
                     lastName: lastName,
@@ -32,17 +31,17 @@ class Controller {
                     gender: gender,
                     UserId: data.id
                 })
-                    .then(data2 => {
-                        res.redirect('/login')
-                    })
             })
-            .catch(err => {
+                .then(data2 => {
+                    res.redirect('/login')
+                })
+                .catch(err => {
                 let result = []
                 if (err.name == "SequelizeValidationError") {
                 err.errors.forEach(x=>{
                     result.push(x.message)
                 })
-                return res.redirect(`/?errors=${result}`)
+                return res.redirect(`/register?errors=${result}`)
                 } else {
                     res.send(err)
 
