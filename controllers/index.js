@@ -3,6 +3,10 @@ const bcrypt = require('bcryptjs')
 
 class Controller {
 
+    static home(req, res){
+        res.redirect('/home');
+    }
+
     static registerForm(req, res) {
         let errors = req.query.errors
         res.render('register.ejs', {errors})
