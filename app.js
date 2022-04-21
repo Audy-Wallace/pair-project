@@ -4,6 +4,8 @@ const port = 3000
 const Controller = require('./controllers/index')
 
 app.use(express.urlencoded({extended:true}))
+app.use("/home", require("./routes/home"))
+
 app.set('view engine','ejs')
 app.get('/', Controller.registerForm)
 app.post('/', Controller.postRegister)
